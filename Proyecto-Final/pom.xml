@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pe.edu.upc</groupId>
-	<artifactId>PC2-Edwin</artifactId>
+	<artifactId>Proyecto-Final</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>PC2-Edwin</name>
 	<description>Trabajo PC2 de programacion web</description>
