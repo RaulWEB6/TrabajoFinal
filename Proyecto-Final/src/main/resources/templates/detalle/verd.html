@@ -19,27 +19,31 @@
 								<td>CODIGO</td>
 								<td th:text="${detalle.idDetalle}"></td>
 							</tr>
-							<tr>
-								<td>Numero de Orden de venta</td>
-								<td th:text="${detalle.ordendetalle.idDetalle"></td>
-							</tr>
+							
 							<tr>
 								<td>PRECIO</td>
 								<td th:text="${detalle.precioDetalle}"></td>
 							</tr>
-							<tr>
-								<td>NOMBRE RECURSO</td>
-								<td th:text="${detalle.recursodetalle.nombreRcurso}"></td>
-							</tr>
 							
 							<tr>
 								<td>Cantidad de unidades</td>
-								<td th:text="${detalle.cantidadDetalle}"></td>
+								<td th:text="${detalle.unidadesDetalle}"></td>
 							</tr>
+							
+							<tr>
+								<td>Codigo de la orden:</td>
+								<td th:text="${detalle.ordendetalle.idOrden}"></td>
+							</tr>
+							
+							<tr>
+								<td>RECURSO:</td>
+								<td th:text="${detalle.recursodetalle.nombreRecurso}"></td>
+							</tr>
+							
 						</tbody>
 					</table>
 
-					<a th:href="@{/recursos/listar}" type="button"
+					<a th:href="@{/detalles/listar}" type="button"
 						class="btn btn-primary k"> <span
 						class="glyphicon glyphicon-circle-arrow-left"></span> Regresar a
 						la lista de los detalle
