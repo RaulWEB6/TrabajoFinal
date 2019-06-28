@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +39,8 @@ public class CaracteristicaController {
 	public String bienvenido(Model model) {
 		return "bienvenido";
 	}
-	
+
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/nuevo")
 	public String nuevaCaracteristica(Model model) {
 		model.addAttribute("caracteristica", new Caracteristica());
@@ -46,6 +48,7 @@ public class CaracteristicaController {
 		return "caracteristica/caracteristica";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/guardar")
 	public String guardarCaracteristica(@Valid Caracteristica caracteristica, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
@@ -72,6 +75,7 @@ public class CaracteristicaController {
 		return "/caracteristica/listaCaracteristica";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String detailsCaracteristica(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -89,6 +93,7 @@ public class CaracteristicaController {
 		return "/caracteristica/caracteristica";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -120,6 +125,7 @@ public class CaracteristicaController {
 		return "caracteristica/listaCaracteristica";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Caracteristica> objPro = caService.listarId(id);

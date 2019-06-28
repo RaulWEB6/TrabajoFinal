@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,7 +46,7 @@ public class RecursoController {
 	public String bienvenido(Model model) {
 		return "bienvenido";
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/nuevo")
 	public String nuevoRecurso(Model model) {
 		model.addAttribute("recurso", new Recurso());
@@ -67,6 +68,7 @@ public class RecursoController {
 				.body(recurso);
 	}
 
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PostMapping("/guardar")
 	public String guardarRecurso(@Valid Recurso recurso, BindingResult result, Model model,@RequestParam("file")  MultipartFile foto,RedirectAttributes flash ,SessionStatus status)
 			throws Exception {
@@ -106,7 +108,7 @@ public class RecursoController {
 		return "/recurso/listaRecurso";
 	
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/listar")
 	public String listarRecursos(Model model) {
 		try {
@@ -119,6 +121,7 @@ public class RecursoController {
 		return "/recurso/listaRecurso";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -135,6 +138,7 @@ public class RecursoController {
 		return "redirect:/recursos/listar";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}") // modificar
 	public String detailsRecursos(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -151,7 +155,7 @@ public class RecursoController {
 		}
 		return "/recurso/recurso";
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Recurso recurso) throws ParseException {
 
@@ -170,7 +174,7 @@ public class RecursoController {
 		model.put("listaRecursos", listaRecursos);
 		return "recurso/listaRecurso";
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping(value = "/ver/{id}")
 	public String ver(@PathVariable(value = "id") Integer id, Map<String, Object> model, RedirectAttributes flash) {
 

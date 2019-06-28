@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,7 +36,8 @@ public class TrabajadorController {
 	public String irBienvenido() {
 		return "bienvenido";
 	}
-
+	
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/nuevo")
 	public String nuevoTrabajador(Model model) {
 		model.addAttribute("trabajador", new Trabajador());
@@ -72,6 +74,7 @@ public class TrabajadorController {
 		return "/trabajador/listaTrabajador";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -89,6 +92,7 @@ public class TrabajadorController {
 		return "redirect:/trabajadores/listar";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")//modificar
 	public String detailsCliente(@PathVariable(value = "id") int id, Model model) {
 		try {

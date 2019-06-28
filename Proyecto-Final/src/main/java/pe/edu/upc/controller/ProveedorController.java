@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,13 +37,13 @@ public class ProveedorController {
 	public String irBienvenido() {
 		return "bienvenido";
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/nuevo")
 	public String nuevoProveedor(Model model) {
 		model.addAttribute("proveedor", new Proveedor());
 		return "proveedor/proveedor";
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@PostMapping("/guardar")
 	public String guardarTrabajador(@Valid Proveedor proveedor, BindingResult result, Model model,
 			SessionStatus status) throws Exception {
@@ -61,7 +62,7 @@ public class ProveedorController {
 		model.addAttribute("listaProveedores", pService.listar());
 		return "/proveedor/listaProveedor";
 	}
-
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping("/listar")
 	public String listarProveedores(Model model) {
 		try {
@@ -72,7 +73,7 @@ public class ProveedorController {
 		}
 		return "/proveedor/listaProveedor";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -88,7 +89,7 @@ public class ProveedorController {
 
 		return "redirect:/proveedores/listar";
 	}
-
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")//modificar
 	public String detailsProveedor(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -106,7 +107,7 @@ public class ProveedorController {
 		return "/proveedor/proveedor";
 	}
 
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Proveedor proveedor) throws ParseException {
 
@@ -120,7 +121,7 @@ public class ProveedorController {
 		model.put("listaProveedores", listaProveedores);
 		return "proveedor/listaProveedor";
 	}
-	
+	@Secured({"ROLE_ADMIN","ROLE_USER"})
 	@GetMapping(value = "/ver/{id}")
 	public String ver(@PathVariable(value = "id") Integer id, Map<String, Object> model, RedirectAttributes flash) {
 

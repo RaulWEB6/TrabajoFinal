@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,6 +44,7 @@ public class OrdenController {
 		return "bienvenido";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/nuevo")
 	public String nuevaOrden(Model model) {
 		model.addAttribute("orden", new Orden_compra());
@@ -51,6 +53,7 @@ public class OrdenController {
 		return "orden/orden";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@PostMapping("/guardar")
 	public String guardarOrden(@Valid Orden_compra orden, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
@@ -66,6 +69,7 @@ public class OrdenController {
 		}
 	}
 
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping("/listar")
 	public String listarOrdenes(Model model) {
 		try {
@@ -78,6 +82,7 @@ public class OrdenController {
 		return "/orden/listaOrden";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@GetMapping("/detalle/{id}")
 	public String detailsOrden(@PathVariable(value = "id") int id, Model model) {
 		try {
@@ -95,6 +100,7 @@ public class OrdenController {
 		return "/orden/orden";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/eliminar")
 	public String eliminar(Map<String, Object> model, @RequestParam(value = "id") Integer id) {
 		try {
@@ -110,11 +116,12 @@ public class OrdenController {
 		return "redirect:/ordenes/listar";
 	}
 
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@RequestMapping("/buscar")
 	public String buscar(Map<String, Object> model, @ModelAttribute Orden_compra orden) throws ParseException {
 		List<Orden_compra> listaOrdenes;
 		orden.setNotaOrden(orden.getNotaOrden());
-		listaOrdenes=oService.buscar(orden.getNotaOrden());
+		listaOrdenes = oService.buscar(orden.getNotaOrden());
 		if (listaOrdenes.isEmpty()) {
 			listaOrdenes = oService.buscarTrabajador(orden.getNotaOrden());
 		}
@@ -128,6 +135,7 @@ public class OrdenController {
 		return "orden/listaOrden";
 	}
 
+	@Secured("ROLE_ADMIN")
 	@RequestMapping("/modificar/{id}")
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) {
 		Optional<Orden_compra> objPro = oService.listarId(id);
@@ -141,7 +149,8 @@ public class OrdenController {
 			return "orden/orden";
 		}
 	}
-	
+
+	@Secured({ "ROLE_ADMIN", "ROLE_USER" })
 	@GetMapping(value = "/ver/{id}")
 	public String ver(@PathVariable(value = "id") Integer id, Map<String, Object> model, RedirectAttributes flash) {
 		Optional<Orden_compra> orden = oService.listarId(id);
