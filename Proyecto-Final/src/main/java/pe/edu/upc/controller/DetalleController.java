@@ -58,8 +58,8 @@ public class DetalleController {
 	public String guardarDetalle(@Valid Detalle_orden detalle, BindingResult result, Model model, SessionStatus status)
 			throws Exception {
 		if (result.hasErrors()) {
-			model.addAttribute("listaOrden", oService.listar());
-			model.addAttribute("listaRecurso", rService.listar());
+			model.addAttribute("listaOrdenes", oService.listar());
+			model.addAttribute("listaRecursos", rService.listar());
 			return "/detalle/detalle";
 		} else {
 			dService.insertar(detalle);

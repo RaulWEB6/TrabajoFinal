@@ -23,29 +23,6 @@
 				</div>
 
 				<div class="form-group row">
-					<label for="ordendetalle" class=" col-sm-2 col-form-label">Orden
-						de venta perteneciente:</label>
-					<div class="col-sm-6">
-						<select class="form-control" th:field="*{ordendetalle.idOrden}">
-							<option th:each="c: ${listaOrdenes}" th:value="${c.idOrden}"
-								th:text="${c.idOrden}"
-								th:selected="(${c.idOrden} == *{ordendetalle.idOrden})"></option>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group row">
-					<label for="recursodetalle" class=" col-sm-2 col-form-label">Nombre del recurso:</label>
-					<div class="col-sm-6">
-						<select class="form-control" th:field="*{recursodetalle.nombreRecurso}">
-							<option th:each="c: ${listaRecursos}" th:value="${c.nombreRecurso}"
-								th:text="${c.nombreRecurso}"
-								th:selected="(${c.nombreRecurso} == *{recursodetalle.nombreRecurso})"></option>
-						</select>
-					</div>
-				</div>
-
-				<div class="form-group row">
 					<label for="unidadesDetalle" class="col-sm-2 col-form-label">Numero
 						de unidades solicitadas del producto</label>
 					<div class="col-sm-6">
@@ -54,6 +31,41 @@
 						<small class="form-text text-danger"
 							th:if="${#fields.hasErrors('unidadesDetalle')}"
 							th:errors="*{unidadesDetalle}"></small>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="precioDetalle" class="col-sm-2 col-form-label">Precio
+						historico del Recurso</label>
+					<div class="col-sm-6">
+						<input type="text" th:field="*{precioDetalle}"
+							class="form-control" th:errorclass="'form-control alert-danger'" />
+						<small class="form-text text-danger"
+							th:if="${#fields.hasErrors('precioDetalle')}"
+							th:errors="*{precioDetalle}"></small>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="recursodetalle" class=" col-sm-2 col-form-label">Recurso:</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{recursodetalle.idRecurso}">
+							<option th:each="c: ${listaRecursos}"
+								th:value="${c.idRecurso}" th:text="${c.nombreRecurso}"
+								th:selected="(${c.idRecurso} == *{recursodetalle.idRecurso})"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="ordendetalle" class=" col-sm-2 col-form-label">Orden
+						de venta perteneciente:</label>
+					<div class="col-sm-6">
+						<select class="form-control" th:field="*{ordendetalle.idOrden}">
+							<option th:each="c: ${listaOrdenes}" th:value="${c.idOrden}"
+								th:text="${c.idOrden}"
+								th:selected="(${c.idOrden} == *{ordendetalle.idOrden})"></option>
+						</select>
 					</div>
 				</div>
 
