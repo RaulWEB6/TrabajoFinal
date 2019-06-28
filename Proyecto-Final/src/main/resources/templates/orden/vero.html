@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<meta charset="ISO-8859-1"></meta>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3">Orden de
+				Compran</div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+
+						<tbody>
+							<tr>
+								<td>CODIGO:</td>
+								<td th:text="${orden.idOrden}"></td>
+							</tr>
+
+							<tr>
+								<td>Fecha de Creacion:</td>
+								<td th:text="${orden.fechaOrden}"></td>
+							</tr>
+
+							<tr>
+								<td>Codigo del trabajador encargado:</td>
+								<td th:text="${orden.trabajadororden.idTrabajador}"></td>
+							</tr>
+							
+							<tr>
+								<td>Nombres del trabajador encargado:</td>
+								<td th:text="${orden.trabajadororden.nombreTrabajador}"></td>
+							</tr>
+							<tr>
+								<td>Apellidos del trabajador encargado:</td>
+								<td th:text="${orden.trabajadororden.apellidoTrabajador}"></td>
+							</tr>
+							<tr>
+								<td>Codigo del proveedor:</td>
+								<td th:text="${orden.proveedororden.idProveedor}"></td>
+							</tr>
+							<tr>
+								<td>Proveedor:</td>
+								<td th:text="${orden.proveedororden.nombreProveedor}"></td>
+							</tr>
+							
+							<tr>
+								<td>Nota importante:</td>
+								<td th:text="${orden.notaOrden}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+					<a th:href="@{/ordenes/listar}" type="button"
+						class="btn btn-primary k"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Volver
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

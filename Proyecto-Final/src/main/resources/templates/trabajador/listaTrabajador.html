@@ -41,7 +41,6 @@
 								<th>Id</th>
 								<th>Nombres del trabajador</th>
 								<th>Apellidos del trabajador</th>
-								<th>DNI</th>
 								<th align="center">Operación</th>
 								<th align="center">Operación</th>
 							</tr>
@@ -53,7 +52,6 @@
 									th:text="${trabajador.idTrabajador}"></a></td>
 								<td th:text="${trabajador.nombreTrabajador}"></td>
 								<td th:text="${trabajador.apellidoTrabajador}"></td>
-								<td th:text="${trabajador.dniTrabajador}"></td>
 								<td align="center"><a
 									th:href="@{/trabajadores/eliminar?id=}+${trabajador.idTrabajador}"
 									type="button" class="btn btn-default btn-lg">Eliminar</a></td>

@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "productos")
+@Table(name = "caracteristica")
 public class Caracteristica implements Serializable {
 
 	/**

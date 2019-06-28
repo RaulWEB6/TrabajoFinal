@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<div align="right">
+			<a style="border-bottom-color: green"
+				th:href="@{/ordenes/nuevo}" id="add-row" type="button"
+				class="btn btn-warning btn-md left-block"> <span
+				class="glyphicon glyphicon-plus"></span> Nueva Orden
+			</a>
+		</div>
+		<div>
+			<form th:action="@{/ordenes/buscar}" method="post"
+				th:object="${orden}">
+				<div class="form-group">
+
+					<label for="p">Buscar:</label> <input type="text"
+						class="form-control" th:field="*{notaOrden}" id="p"></input>
+					<div align="right">
+						<button type="submit" class="btn btn-info">Aceptar</button>
+						<a href="/ordenes/listar" class="btn btn-dark">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3">Reporte de
+				Ordenes</div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+						<thead class="bg-dark mb-3 text-white">
+							<tr>
+								<th>Id</th>
+								<th>Trabajador</th>
+								<th>Proveedor</th>
+								<th align="center">Operación</th>
+								<th align="center">Operación</th>
+							</tr>
+						</thead>
+
+						<tbody id="orden-list">
+							<tr th:each="orden:${listaOrdenes}">
+								<td ><a class="btn btn-primary btn-xs"
+									th:href="@{/ordenes/ver/} + ${orden.idOrden}"
+									th:text="${orden.idOrden}"></a></td>
+								<td th:text="${orden.trabajadororden.nombreTrabajador}"></td>
+								<td th:text="${orden.proveedororden.nombreProveedor}"></td>
+								<td align="center"><a
+									th:href="@{/ordenes/eliminar?id=}+${orden.idOrden}"
+									type="button" class="btn btn-default btn-lg">Eliminar</a></td>
+								<td align="center"><a
+									th:href="@{'/ordenes/modificar/' + ${orden.idOrden}}"
+									type="button" class="btn btn-default btn-lg">Editar</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

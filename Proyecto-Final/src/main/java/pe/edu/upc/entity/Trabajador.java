@@ -7,14 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "trabajador")
 public class Trabajador implements Serializable {
 
@@ -33,23 +30,29 @@ public class Trabajador implements Serializable {
 	@NotEmpty(message = "Ingresa el apellido del trabajador")
 	@Column(name = "apellidoTrabajador", nullable = false, length = 70)
 	private String apellidoTrabajador;
-	
+
 	@Size(min = 8, max = 8)
 	@NotEmpty(message = "Ingresar DNI")
-	@Column(name="",nullable=false,length=45,unique=true)
+	@Column(name = "", nullable = false, length = 45, unique = true)
 	private String dniTrabajador;
+
+	@NotEmpty(message = "Ingresar el puesto del trabajador")
+	@Column(name = "puestoTrabajador", nullable = false, length = 70)
+	private String puestoTrabajador;
 
 	public Trabajador() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Trabajador(int idTrabajador, String nombreTrabajador, String apellidoTrabajador, String foto, String dniTrabajador) {
+	public Trabajador(int idTrabajador, String nombreTrabajador, String apellidoTrabajador, String dniTrabajador,
+			String puestoTrabajador) {
 		super();
 		this.idTrabajador = idTrabajador;
 		this.nombreTrabajador = nombreTrabajador;
 		this.apellidoTrabajador = apellidoTrabajador;
-		this.dniTrabajador=dniTrabajador;
+		this.dniTrabajador = dniTrabajador;
+		this.puestoTrabajador=puestoTrabajador;
 	}
 
 	public int getIdTrabajador() {
@@ -82,5 +85,13 @@ public class Trabajador implements Serializable {
 
 	public void setDniTrabajador(String dniTrabajador) {
 		this.dniTrabajador = dniTrabajador;
+	}
+
+	public String getPuestoTrabajador() {
+		return puestoTrabajador;
+	}
+
+	public void setPuestoTrabajador(String puestoTrabajador) {
+		this.puestoTrabajador = puestoTrabajador;
 	}
 }
