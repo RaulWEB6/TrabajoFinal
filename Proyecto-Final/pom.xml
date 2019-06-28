@@ -11,8 +11,8 @@
 	<groupId>pe.edu.upc</groupId>
 	<artifactId>Proyecto-Final</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PC2-Edwin</name>
-	<description>Trabajo PC2 de programacion web</description>
+	<name>Proyecto-Final</name>
+	<description>Trabajo final de programacion web</description>
 
 	<properties>
 		<java.version>1.8</java.version>
