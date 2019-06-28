@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3">Detalles de
+				trabajador</div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+
+						<tbody>
+							<tr>
+								<td>CODIGO</td>
+								<td th:text="${trabajador.idTrabajador}"></td>
+							</tr>
+							<tr>
+								<td>NOMBRES</td>
+								<td th:text="${trabajador.nombreTrabajador}"></td>
+							</tr>
+							<tr>
+								<td>APELLIDOS</td>
+								<td th:text="${trabajador.apellidoTrabajador}"></td>
+							</tr>
+							<tr>
+								<td>DNI</td>
+								<td th:text="${trabajador.dniTrabajador}"></td>
+							</tr>
+
+						</tbody>
+					</table>
+
+					<a th:href="@{/trabajadores/listar}" type="button"
+						class="btn btn-primary k"> <span
+						class="glyphicon glyphicon-circle-arrow-left"></span> Regresar a
+						la lista de trabajadores
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

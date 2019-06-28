@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<meta charset="UTF-8"></meta>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<div align="right">
+			<a style="border-bottom-color: green"
+				th:href="@{/caracteristicas/nuevo}" id="add-row" type="button"
+				class="btn btn-warning btn-md left-block"> <span
+				class="glyphicon glyphicon-plus"></span> Nuevo
+			</a>
+		</div>
+		<div>
+			<form th:action="@{/caracteristicas/buscar}" method="post"
+				th:object="${caracteristica}">
+				<div class="form-group">
+
+					<label for="p">Buscar:</label> <input type="text"
+						class="form-control" th:field="*{nombreCaracteristica}" id="p"></input>
+					<div align="right">
+						<button type="submit" class="btn btn-info">Aceptar</button>
+						<a href="/caracteristicas/listar" class="btn btn-dark">Cancelar</a>
+					</div>
+				</div>
+			</form>
+		</div>
+
+		<div class="card">
+			<div class="card-header text-white bg-dark mb-3">Reporte de
+				Productos</div>
+			<div class="card-body">
+
+				<div class="table-responsive">
+					<table class="table table-white">
+						<thead class="bg-dark mb-3 text-white">
+							<tr>
+								<th>Id</th>
+								<th>Caracteristica</th>
+								<th>Recurso</th>
+								<th align="center">Operación</th>
+								<th align="center">Operación</th>
+							</tr>
+						</thead>
+
+						<tbody id="caracteristica-list">
+							<tr th:each="caracteristica:${listaCaracteristicas}">
+								<td th:text="${caracteristica.idCaracteristica}"></td>
+								<td th:text="${caracteristica.nombreCaracteristica}"></td>
+								<td th:text="${caracteristica.recursocaracteristica.nombreRecurso}"></td>
+								<td align="center"><a
+									th:href="@{/caracteristicas/eliminar?id=}+${caracteristica.idCaracteristica}"
+									type="button" class="btn btn-default btn-lg">Eliminar</a></td>
+								<td align="center"><a
+									th:href="@{'/caracteristicas/modificar/' + ${caracteristica.idCaracteristica}}"
+									type="button" class="btn btn-default btn-lg">Editar</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<p th:text="${mensaje}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>
